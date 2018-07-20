@@ -10,8 +10,6 @@ import dagger.Provides
  *
  * Dagger module for database.
  *
- * Created by Pablo Arqueros on 11/22/2017.
- * 2017 © Cognizant Technology Solutions
  */
 
 

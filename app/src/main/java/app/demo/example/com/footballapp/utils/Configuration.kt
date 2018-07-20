@@ -6,12 +6,10 @@ import app.demo.example.com.footballapp.BuildConfig
  *
  * Provides the configuration that depends on the build variant
  *
- * Created by Jorge Para on 10/30/17.
- * 2017 © Cognizant Technology Solutions
  */
-const val FLAVOR_MOCK: String = "cjMock"
-const val FLAVOR_QA: String = "cjQa"
-const val FLAVOR_PRODUCTION: String = "cjProduction"
+const val FLAVOR_MOCK: String = "footMock"
+const val FLAVOR_QA: String = "footQa"
+const val FLAVOR_PRODUCTION: String = "footProduction"
 
 class Configuration {
 
@@ -32,8 +30,8 @@ class Configuration {
         get() {
             when (BuildConfig.FLAVOR) {
                 FLAVOR_MOCK -> return "https://www.example.com"
-                FLAVOR_QA -> return "https://candidatejourneyapi-int.azurewebsites.net"
-                else -> return "https://candidatejourneyapi.azurewebsites.net"
+                FLAVOR_QA -> return "http://api.football-data.org/v2"
+                else -> return "http://api.football-data.org/v2"
             }
         }
 

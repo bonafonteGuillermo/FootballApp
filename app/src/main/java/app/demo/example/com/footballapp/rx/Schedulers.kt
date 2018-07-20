@@ -6,8 +6,6 @@ import io.reactivex.Scheduler
  *
  * Shared schedulers specification
  *
- * Created by Jorge Para on 10/30/17.
- * 2017 © Cognizant Technology Solutions
  */
 interface Schedulers {
 
