@@ -17,7 +17,7 @@ class Configuration {
         MOCK, QA, PRODUCTION;
     }
 
-    val Environment : Variant
+    val Environment: Variant
         get() {
             when (BuildConfig.FLAVOR) {
                 FLAVOR_MOCK -> return Variant.MOCK
@@ -26,13 +26,12 @@ class Configuration {
             }
         }
 
-    val BaseUrl : String
+    val BaseUrl: String
         get() {
             when (BuildConfig.FLAVOR) {
                 FLAVOR_MOCK -> return "https://www.example.com"
-                FLAVOR_QA -> return "http://api.football-data.org/v2"
-                else -> return "http://api.football-data.org/v2"
+                FLAVOR_QA -> return "http://api.football-data.org"
+                else -> return "http://api.football-data.org"
             }
         }
-
 }

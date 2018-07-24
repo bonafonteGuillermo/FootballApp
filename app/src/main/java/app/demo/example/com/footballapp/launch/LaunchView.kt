@@ -1,4 +1,4 @@
-package app.demo.example.com.footballapp.splash
+package app.demo.example.com.footballapp.launch
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -14,7 +14,7 @@ import app.demo.example.com.footballapp.R
  *
  * Created by Guillermo Bonafonte Criado
  */
-class SplashView(context: AppCompatActivity) : ISplashView {
+class LaunchView(context: AppCompatActivity) : ISplashView {
 
 
     var view: View

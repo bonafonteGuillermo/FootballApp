@@ -1,4 +1,4 @@
-package app.demo.example.com.footballapp.splash
+package app.demo.example.com.footballapp.launch
 
 import app.demo.example.com.footballapp.app.BasePresenter
 import app.demo.example.com.footballapp.app.BaseView

@@ -1,4 +1,4 @@
-package app.demo.example.com.footballapp.splash.injection
+package app.demo.example.com.footballapp.launch.injection
 
 import java.lang.annotation.Retention
 import java.lang.annotation.RetentionPolicy
@@ -12,4 +12,4 @@ import javax.inject.Scope
  */
 @Scope
 @Retention(RetentionPolicy.CLASS)
-annotation class SplashScope
+annotation class LaunchScope

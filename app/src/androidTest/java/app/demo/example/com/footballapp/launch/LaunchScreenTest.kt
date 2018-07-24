@@ -1,4 +1,4 @@
-package app.demo.example.com.footballapp.splash
+package app.demo.example.com.footballapp.launch
 
 import android.support.test.espresso.intent.Intents
 import android.support.test.filters.LargeTest
@@ -15,11 +15,11 @@ import org.junit.runner.RunWith
  */
 @RunWith(AndroidJUnit4::class)
 @LargeTest
-class SplashScreenTest {
+class LaunchScreenTest {
 
     @Rule
     @JvmField
-    val activity = ActivityTestRule<SplashActivity>(SplashActivity::class.java)
+    val activity = ActivityTestRule<LaunchActivity>(LaunchActivity::class.java)
 
     @Before
     fun testSetup() = Intents.init()

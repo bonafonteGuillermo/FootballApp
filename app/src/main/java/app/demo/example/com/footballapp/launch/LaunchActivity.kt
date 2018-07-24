@@ -1,10 +1,10 @@
-package app.demo.example.com.footballapp.splash
+package app.demo.example.com.footballapp.launch
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import app.demo.example.com.footballapp.app.App
-import app.demo.example.com.footballapp.splash.injection.DaggerSplashComponent
-import app.demo.example.com.footballapp.splash.injection.SplashContextModule
+import app.demo.example.com.footballapp.launch.injection.DaggerLaunchComponent
+import app.demo.example.com.footballapp.launch.injection.LaunchContextModule
 
 import javax.inject.Inject
 
@@ -14,7 +14,7 @@ import javax.inject.Inject
  *
  * Created by Guillermo Bonafonte Criado
  */
-class SplashActivity : AppCompatActivity() {
+class LaunchActivity : AppCompatActivity() {
 
     @Inject
     lateinit var view: ISplashView
@@ -25,9 +25,9 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        DaggerSplashComponent.builder()
+        DaggerLaunchComponent.builder()
                 .appComponent(App.appComponent)
-                .splashContextModule(SplashContextModule(this))
+                .launchContextModule(LaunchContextModule(this))
                 .build()
                 .inject(this)
 

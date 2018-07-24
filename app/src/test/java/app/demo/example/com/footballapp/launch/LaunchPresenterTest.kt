@@ -1,4 +1,4 @@
-package app.demo.example.com.footballapp.splash
+package app.demo.example.com.footballapp.launch
 
 import org.junit.Before
 
@@ -8,7 +8,7 @@ import org.junit.Before
  *
  */
 
-class SplashPresenterTest() {
+class LaunchPresenterTest() {
 
     @Before
     fun setUp() {
