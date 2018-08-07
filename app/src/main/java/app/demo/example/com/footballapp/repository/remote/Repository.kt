@@ -22,16 +22,10 @@ class Repository(private val api: Api,
         var publisher = SingleSubject.create<List<Area>>()
 
         var areas = api.getAreas(getFootballDataApiToken())
-        areas.subscribe({ areasResponse ->
-            if (areasResponse.areas.isNotEmpty()) {
-                publisher.onSuccess(areasResponse.areas)
-            }
-        },
-                {
-
-                    error ->
-                    publisher.onError(error)
-                })
+        areas.subscribe(
+                { areasResponse -> publisher.onSuccess(areasResponse.areas) },
+                { error -> publisher.onError(error) }
+        )
         return publisher
     }
 
