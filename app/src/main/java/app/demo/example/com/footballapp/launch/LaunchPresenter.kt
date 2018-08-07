@@ -1,8 +1,9 @@
 package app.demo.example.com.footballapp.launch
 
-import io.reactivex.disposables.Disposable
+import android.util.Log
 import app.demo.example.com.footballapp.repository.IRepository
 import app.demo.example.com.footballapp.rx.Schedulers
+import io.reactivex.disposables.Disposable
 
 /**
  *
@@ -15,10 +16,27 @@ class LaunchPresenter(private var view: ISplashView, override var repository: IR
     private lateinit var subscription: Disposable
 
     override fun onCreate() {
-
+        getAreas()
     }
 
     override fun onDestroy() {
         subscription.dispose()
+    }
+
+    fun getAreas(): Disposable {
+        return repository.getAreas()
+                .subscribeOn(schedulers.internet())
+                .observeOn(schedulers.androidThread())
+                .subscribe(
+                        {
+                            areas ->
+                            for (a in areas){
+                                Log.d("--->", a.name)
+                            }
+                        },
+                        {
+
+                        }
+                )
     }
 }
