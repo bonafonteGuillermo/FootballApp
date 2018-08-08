@@ -17,13 +17,13 @@ import kotlinx.android.synthetic.main.activity_launch.view.*
  *
  * Created by Guillermo Bonafonte Criado
  */
-class LaunchView(context: AppCompatActivity) : ISplashView {
+class LaunchView(context: AppCompatActivity) : ILaunchView {
 
     var view: View
     private val adapter = ParentAreaAdapter{ itemClicked(it) }
 
     override var context: Context = context
-    override var presenter: ISplashPresenter? = null
+    override var presenter: ILaunchPresenter? = null
     override fun constructView(): View = view
 
     init {

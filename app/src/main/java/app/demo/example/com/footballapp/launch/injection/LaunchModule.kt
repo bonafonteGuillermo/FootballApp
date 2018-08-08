@@ -19,13 +19,13 @@ class LaunchModule {
 
     @LaunchScope
     @Provides
-    fun providePresenter(view: ISplashView, repository: IRepository, schedulers: Schedulers): ISplashPresenter {
+    fun providePresenter(view: ILaunchView, repository: IRepository, schedulers: Schedulers): ILaunchPresenter {
         return LaunchPresenter(view, repository, schedulers)
     }
 
     @LaunchScope
     @Provides
-    fun provideView(context: AppCompatActivity): ISplashView {
+    fun provideView(context: AppCompatActivity): ILaunchView {
         return LaunchView(context)
     }
 

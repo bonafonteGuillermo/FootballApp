@@ -11,10 +11,10 @@ import app.demo.example.com.footballapp.model.Area
  *
  * Created by Guillermo Bonafonte Criado
  */
-interface ISplashPresenter : BasePresenter {
+interface ILaunchPresenter : BasePresenter {
     fun itemClicked(item:Area)
 }
 
-interface ISplashView : BaseView<ISplashPresenter> {
+interface ILaunchView : BaseView<ILaunchPresenter> {
     fun bindRecyclerViewData(areas:List<Area>)
 }

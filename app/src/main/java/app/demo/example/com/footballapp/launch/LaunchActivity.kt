@@ -17,10 +17,10 @@ import javax.inject.Inject
 class LaunchActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var view: ISplashView
+    lateinit var view: ILaunchView
 
     @Inject
-    lateinit var presenter: ISplashPresenter
+    lateinit var presenter: ILaunchPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
