@@ -2,6 +2,7 @@ package app.demo.example.com.footballapp.launch
 
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.DividerItemDecoration
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,8 @@ import app.demo.example.com.footballapp.R
 import app.demo.example.com.footballapp.launch.adapter.ParentAreaAdapter
 import app.demo.example.com.footballapp.model.Area
 import kotlinx.android.synthetic.main.activity_launch.view.*
+
+
 
 /**
  *
@@ -33,6 +36,7 @@ class LaunchView(context: AppCompatActivity) : ILaunchView {
     }
 
     override fun bindRecyclerViewData(areas: List<Area>) {
+        view.recycler.addItemDecoration(DividerItemDecoration(view.recycler.context, DividerItemDecoration.VERTICAL))
         view.recycler.adapter = adapter
         adapter.data = areas
     }
