@@ -24,7 +24,7 @@ class LaunchPresenter(private var view: ISplashView, override var repository: IR
     }
 
     fun getAreas(): Disposable {
-        return repository.getAreas()
+        return repository.getRemoteAreas()
                 .subscribeOn(schedulers.internet())
                 .observeOn(schedulers.androidThread())
                 .subscribe(
