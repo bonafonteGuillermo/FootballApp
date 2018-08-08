@@ -1,6 +1,7 @@
 package app.demo.example.com.footballapp.launch
 
 import android.util.Log
+import app.demo.example.com.footballapp.model.Area
 import app.demo.example.com.footballapp.repository.IRepository
 import app.demo.example.com.footballapp.rx.Schedulers
 import io.reactivex.disposables.Disposable
@@ -24,19 +25,25 @@ class LaunchPresenter(private var view: ISplashView, override var repository: IR
     }
 
     fun getAreas(): Disposable {
-        return repository.getRemoteAreas()
+        return repository.getAreas()
                 .subscribeOn(schedulers.internet())
                 .observeOn(schedulers.androidThread())
                 .subscribe(
                         {
                             areas ->
                             for (a in areas){
-                                Log.d("--->", a.name)
+                                Log.d("--->", a.toString())
                             }
+                            view.bindRecyclerViewData(areas)
+
                         },
                         {
 
                         }
                 )
+    }
+
+    override fun itemClicked(item: Area) {
+        Log.d("--->", item.parentArea)
     }
 }

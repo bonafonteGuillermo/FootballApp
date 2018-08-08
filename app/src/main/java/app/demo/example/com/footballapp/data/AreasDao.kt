@@ -14,11 +14,14 @@ import app.demo.example.com.footballapp.model.Area
 @Dao
 interface AreasDao {
 
-    @Query("SELECT * FROM area")
+    @Query("SELECT id,name,country_code,parent_area_id,parent_area FROM area")
     fun getAreas(): List<Area>
 
-    @Query("SELECT parent_area FROM area GROUP BY parent_area")
-    fun getGroupedAreas(): List<String>
+    @Query("SELECT id,name,country_code,parent_area_id,parent_area " +
+            "FROM area " +
+            "WHERE parent_area<>'null' AND parent_area<>'World' " +
+            "GROUP BY parent_area")
+    fun getGroupedAreas(): List<Area>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertArea(area: Area)

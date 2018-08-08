@@ -18,19 +18,19 @@ class Repository(private val api: Api,
 ) : IRepository {
 
     //region RemoteRequest
-    override fun getRemoteAreas(): Single<List<Area>> {
+    override fun getAreas(): Single<List<Area>> {
 
         var publisher = SingleSubject.create<List<Area>>()
 
         Observable.just(localStorage).subscribeOn(schedulers.io()).subscribe(
                 { db ->
-                    val areasLocallySaved = getLocalAreas()
+                    val areasLocallySaved = getLocalGroupedAreas()
                     if (areasLocallySaved.isEmpty()) {
                         var response = api.getAreas(getFootballDataApiToken())
                         response.subscribe(
                                 { areasResponse ->
                                     saveAreasInLocalStorage(areasResponse.areas)
-                                    publisher.onSuccess(getLocalAreas())
+                                    publisher.onSuccess(getLocalGroupedAreas())
                                 },
                                 { error ->
                                     publisher.onError(error)
@@ -48,9 +48,10 @@ class Repository(private val api: Api,
     }
     //endregion
 
-
     //region LocaleStorage
     override fun getLocalAreas(): List<Area> = localStorage.areasDao().getAreas()
+
+    override fun getLocalGroupedAreas(): List<Area> = localStorage.areasDao().getGroupedAreas()
 
     override fun saveAreasInLocalStorage(areasList: List<Area>) {
         for (area in areasList) {
@@ -58,5 +59,4 @@ class Repository(private val api: Api,
         }
     }
     //endregion
-
 }

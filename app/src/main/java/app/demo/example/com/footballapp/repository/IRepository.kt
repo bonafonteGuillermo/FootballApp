@@ -6,8 +6,9 @@ import io.reactivex.Single
 
 interface IRepository {
 
-    fun getRemoteAreas(): Single<List<Area>>
+    fun getAreas(): Single<List<Area>>
     fun getLocalAreas(): List<Area>
+    fun getLocalGroupedAreas(): List<Area>
     fun saveAreasInLocalStorage(areasList: List<Area>)
 
 }
