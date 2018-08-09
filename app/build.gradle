@@ -90,8 +90,6 @@ dependencies {
     testImplementation "android.arch.persistence.room:testing:1.1.0-beta2"
     implementation "android.arch.persistence.room:rxjava2:1.1.0-beta2"
 
-
-
     //Secure SharedPreferences
     implementation 'com.scottyab:secure-preferences-lib:0.1.4'
 
