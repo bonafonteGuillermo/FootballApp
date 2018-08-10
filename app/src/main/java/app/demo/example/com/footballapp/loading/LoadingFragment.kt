@@ -1,6 +1,8 @@
 package app.demo.example.com.footballapp.loading
 
 import android.os.Bundle
+import android.support.constraint.ConstraintLayout
+import android.app.DialogFragment
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,12 +15,12 @@ import app.demo.example.com.footballapp.R
  * create an instance of this fragment.
  *
  */
-class LoadingFragment : Fragment() {
+class LoadingFragment : DialogFragment() {
+    private var parent: ConstraintLayout? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_loading, container, false)
+        return inflater.inflate(R.layout.activity_splash, parent, true)
     }
 
     companion object {

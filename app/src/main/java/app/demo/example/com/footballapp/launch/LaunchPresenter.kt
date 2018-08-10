@@ -1,5 +1,6 @@
 package app.demo.example.com.footballapp.launch
 
+import android.os.Parcelable
 import android.util.Log
 import app.demo.example.com.footballapp.model.Area
 import app.demo.example.com.footballapp.repository.IRepository
@@ -15,32 +16,20 @@ import io.reactivex.disposables.Disposable
 class LaunchPresenter(private var view: ILaunchView, override var repository: IRepository, private var schedulers: Schedulers) : ILaunchPresenter {
 
     private lateinit var subscription: Disposable
+    var areas : List<Area> = emptyList()
 
     override fun onCreate() {
-        getAreas()
+
     }
+
+    override fun onCreate(areas: Array<Area>) {
+        this.areas = areas.toList()
+        view.bindRecyclerViewData(areas.toList())
+    }
+
 
     override fun onDestroy() {
         subscription.dispose()
-    }
-
-    fun getAreas(): Disposable {
-        return repository.getAreas()
-                .subscribeOn(schedulers.internet())
-                .observeOn(schedulers.androidThread())
-                .subscribe(
-                        {
-                            areas ->
-                            for (a in areas){
-                                Log.d("--->", a.toString())
-                            }
-                            view.bindRecyclerViewData(areas)
-
-                        },
-                        {
-
-                        }
-                )
     }
 
     override fun itemClicked(item: Area) {

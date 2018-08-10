@@ -1,16 +1,13 @@
 package app.demo.example.com.footballapp.splash
 
 import android.content.Context
-import android.content.Intent
-import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import android.support.v7.app.AppCompatActivity
-import io.reactivex.Observable
-import io.reactivex.subjects.PublishSubject
 import app.demo.example.com.footballapp.R
+import app.demo.example.com.footballapp.loading.LoadingFragment
 
 /**
  *
@@ -24,6 +21,9 @@ class SplashView(context: AppCompatActivity) : ISplashView {
 
     override var context: Context = context
     override var presenter: ISplashPresenter? = null
+    override var loading: LoadingFragment? = null
+
+
     override fun constructView(): View = view
 
     init {

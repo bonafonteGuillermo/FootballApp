@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import app.demo.example.com.footballapp.app.App
 import app.demo.example.com.footballapp.launch.injection.DaggerLaunchComponent
 import app.demo.example.com.footballapp.launch.injection.LaunchContextModule
+import app.demo.example.com.footballapp.model.Area
 
 import javax.inject.Inject
 
@@ -31,11 +32,18 @@ class LaunchActivity : AppCompatActivity() {
                 .build()
                 .inject(this)
 
-
         setContentView(view.constructView())
         view.presenter = presenter
 
-        presenter.onCreate()
+        //TODO CHECK INTENT
+
+        val bundle = intent.extras
+        if (bundle.getParcelableArray("areas") != null){
+            var areas = bundle.getParcelableArray("areas")
+            presenter.onCreate(areas as Array<Area>)
+        }else{
+            presenter.onCreate()
+        }
 
     }
 

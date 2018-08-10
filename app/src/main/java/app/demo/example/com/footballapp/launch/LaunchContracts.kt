@@ -1,6 +1,7 @@
 package app.demo.example.com.footballapp.launch
 
 
+import android.os.Parcelable
 import app.demo.example.com.footballapp.app.BasePresenter
 import app.demo.example.com.footballapp.app.BaseView
 import app.demo.example.com.footballapp.model.Area
@@ -12,6 +13,7 @@ import app.demo.example.com.footballapp.model.Area
  * Created by Guillermo Bonafonte Criado
  */
 interface ILaunchPresenter : BasePresenter {
+    fun onCreate(areas: Array<Area>)
     fun itemClicked(item:Area)
 }
 

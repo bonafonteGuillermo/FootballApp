@@ -11,5 +11,5 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class AreasResponse(
         var count: Int? = 0,
-        var areas: List<Area> = listOf()
+        var areas: MutableList<Area> = mutableListOf()
 ) : Parcelable

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import app.demo.example.com.footballapp.R
 import app.demo.example.com.footballapp.launch.adapter.ParentAreaAdapter
+import app.demo.example.com.footballapp.loading.LoadingFragment
 import app.demo.example.com.footballapp.model.Area
 import kotlinx.android.synthetic.main.activity_launch.view.*
 
@@ -27,6 +28,8 @@ class LaunchView(context: AppCompatActivity) : ILaunchView {
 
     override var context: Context = context
     override var presenter: ILaunchPresenter? = null
+    override var loading: LoadingFragment? = null
+
     override fun constructView(): View = view
 
     init {
