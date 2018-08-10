@@ -1,8 +1,5 @@
 package app.demo.example.com.footballapp.splash
 
-import android.content.Intent
-import app.demo.example.com.footballapp.launch.LaunchActivity
-import android.os.Bundle
 import android.os.Handler
 import app.demo.example.com.footballapp.repository.IRepository
 import app.demo.example.com.footballapp.rx.Schedulers
@@ -22,7 +19,7 @@ class SplashPresenter(private var view: ISplashView, override var repository: IR
     override fun onCreate() {
         view.showLoadingFragment()
         handler.postDelayed({
-            getAreas()
+            subscription = getAreas()
         },3000)
     }
 
@@ -37,10 +34,7 @@ class SplashPresenter(private var view: ISplashView, override var repository: IR
                 .subscribe(
                         { areas ->
                             view.hideLoadingFragment()
-
-                            /*var intent = Intent()
-                            intent.putParcelableArrayListExtra("areas",areas.toTypedArray())*/
-                            view.startActivity(LaunchActivity::class.java, bundle)
+                            view.navigateToLaunchActivity(areas)
                         },
                         {
                             view.hideLoadingFragment()

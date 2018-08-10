@@ -1,7 +1,11 @@
 package app.demo.example.com.footballapp.launch
 
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
+import android.os.Parcelable
 import android.support.v7.app.AppCompatActivity
+import android.view.WindowManager
 import app.demo.example.com.footballapp.app.App
 import app.demo.example.com.footballapp.launch.injection.DaggerLaunchComponent
 import app.demo.example.com.footballapp.launch.injection.LaunchContextModule
@@ -26,6 +30,10 @@ class LaunchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        }
+
         DaggerLaunchComponent.builder()
                 .appComponent(App.appComponent)
                 .launchContextModule(LaunchContextModule(this))
@@ -35,12 +43,10 @@ class LaunchActivity : AppCompatActivity() {
         setContentView(view.constructView())
         view.presenter = presenter
 
-        //TODO CHECK INTENT
-
         val bundle = intent.extras
-        if (bundle.getParcelableArray("areas") != null){
-            var areas = bundle.getParcelableArray("areas")
-            presenter.onCreate(areas as Array<Area>)
+        if (bundle.getParcelableArrayList<Parcelable>("areas") != null){
+            var areas = bundle.getParcelableArrayList<Area>("areas")
+            presenter.onCreate(areas.toList())
         }else{
             presenter.onCreate()
         }
