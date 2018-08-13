@@ -24,12 +24,17 @@ class LaunchPresenter(private var view: ILaunchView, override var repository: IR
 
     override fun onCreate(areas: List<Area>) {
         this.areas = areas.toList()
-        view.bindRecyclerViewData(areas.toList())
+        view.bindRecyclerViewData(this.areas)
+        view.bindFilterRecyclerViewData(this.areas)
     }
 
     override fun onDestroy() {}
 
     override fun itemClicked(item: Area) {
+        Log.d("--->", item.parentArea)
+    }
+
+    override fun filterItemClicked(item: Area) {
         Log.d("--->", item.parentArea)
     }
 }

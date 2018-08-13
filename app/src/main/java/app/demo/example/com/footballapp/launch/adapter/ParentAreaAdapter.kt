@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import app.demo.example.com.footballapp.R
 import app.demo.example.com.footballapp.model.Area
-import kotlinx.android.synthetic.main.parent_area_item_layout.view.*
+import kotlinx.android.synthetic.main.item_area.view.*
 import kotlin.properties.Delegates
 
 typealias Listener = (Area) -> Unit
@@ -17,7 +17,7 @@ class ParentAreaAdapter(data: List<Area> = emptyList(), private val listener: Li
     var data by Delegates.observable(data) { _, _, _ -> notifyDataSetChanged() }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyParentAreaViewHolder =
-            MyParentAreaViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.parent_area_item_layout, parent, false), listener)
+            MyParentAreaViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.item_area, parent, false), listener)
 
     override fun onBindViewHolder(holder: MyParentAreaViewHolder, position: Int) {
         holder.bind(data[position])
