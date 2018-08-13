@@ -14,19 +14,16 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.05" />
 
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/horizontal_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:orientation="horizontal"
-
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"
         app:layout_constraintTop_toTopOf="@+id/horizontal_guideline"
-        tools:itemCount="6"
-        tools:listitem="@layout/item_area_filter" />
-
+        tools:itemCount="7"
+        tools:listitem="@layout/item_date_filter" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler"

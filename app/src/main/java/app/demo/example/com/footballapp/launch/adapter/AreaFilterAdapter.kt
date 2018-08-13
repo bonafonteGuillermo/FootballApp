@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import kotlin.properties.Delegates
 import app.demo.example.com.footballapp.model.Area
 import app.demo.example.com.footballapp.R
-import kotlinx.android.synthetic.main.item_area.view.*
 import kotlinx.android.synthetic.main.item_area_filter.view.*
 
 typealias FilterListener = (Area) -> Unit

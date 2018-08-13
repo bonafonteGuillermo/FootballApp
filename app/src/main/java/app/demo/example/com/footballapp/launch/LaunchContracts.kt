@@ -1,10 +1,10 @@
 package app.demo.example.com.footballapp.launch
 
 
-import android.os.Parcelable
 import app.demo.example.com.footballapp.app.BasePresenter
 import app.demo.example.com.footballapp.app.BaseView
 import app.demo.example.com.footballapp.model.Area
+import java.util.*
 
 /**
  *
@@ -16,9 +16,11 @@ interface ILaunchPresenter : BasePresenter {
     fun onCreate(areas: List<Area>)
     fun itemClicked(item:Area)
     fun filterItemClicked(item:Area)
+    fun dateFilterItemClicked(date:Date)
 }
 
 interface ILaunchView : BaseView<ILaunchPresenter> {
     fun bindRecyclerViewData(areas:List<Area>)
     fun bindFilterRecyclerViewData(areas:List<Area>)
+    fun bindDateFilterRecyclerViewData(dates: List<Date>)
 }
