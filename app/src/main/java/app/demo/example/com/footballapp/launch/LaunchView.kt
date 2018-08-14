@@ -76,16 +76,6 @@ class LaunchView(context: AppCompatActivity) : ILaunchView {
                 }
             }
         })
-
-        view.horizontal_recycler.onFlingListener = object : RecyclerView.OnFlingListener() {
-            override fun onFling(velocityX: Int, velocityY: Int): Boolean {
-                var velocityY = velocityY * 0.1
-                view.horizontal_recycler.fling(velocityX, velocityY.toInt())
-                return true
-
-            }
-        }
-
     }
 
     override fun bindRecyclerViewData(areas: List<Area>) {
@@ -107,7 +97,6 @@ class LaunchView(context: AppCompatActivity) : ILaunchView {
     }
 
     override fun navigateToPosition(position: Int) {
-//      view.horizontal_recycler.smoothScrollToPosition(position)
         val smoothScroller: RecyclerView.SmoothScroller = object : LinearSmoothScroller(context) {
             override fun calculateDtToFit(viewStart: Int, viewEnd: Int, boxStart: Int, boxEnd: Int, snapPreference: Int): Int =
                     (boxStart + (boxEnd - boxStart) / 2) - (viewStart + (viewEnd - viewStart) / 2)
