@@ -42,8 +42,9 @@ class LaunchPresenter(private var view: ILaunchView, override var repository: IR
         Log.d("--->", item.parentArea)
     }
 
-    override fun dateFilterItemClicked(date: Date) {
+    override fun dateFilterItemClicked(date: Date,position : Int) {
         Log.d("--->", date.toString())
+        view.navigateToPosition(position)
     }
 
     private fun getCalendarDates() : List<Date> {

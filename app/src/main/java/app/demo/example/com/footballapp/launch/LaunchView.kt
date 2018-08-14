@@ -2,19 +2,25 @@ package app.demo.example.com.footballapp.launch
 
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import app.demo.example.com.footballapp.R
-import app.demo.example.com.footballapp.launch.adapter.ParentAreaAdapter
 import app.demo.example.com.footballapp.launch.adapter.AreaFilterAdapter
 import app.demo.example.com.footballapp.launch.adapter.DateAdapter
+import app.demo.example.com.footballapp.launch.adapter.ParentAreaAdapter
 import app.demo.example.com.footballapp.loading.LoadingFragment
 import app.demo.example.com.footballapp.model.Area
 import kotlinx.android.synthetic.main.activity_launch.view.*
 import java.util.*
+import android.util.Log
+import com.bumptech.glide.Glide.init
+import android.support.v7.widget.RecyclerView
+import android.util.DisplayMetrics
+
+
 
 
 /**
@@ -26,13 +32,16 @@ import java.util.*
 class LaunchView(context: AppCompatActivity) : ILaunchView {
 
     var view: View
-    private val adapter = ParentAreaAdapter{ itemClicked(it) }
-    private val filterAdapter = AreaFilterAdapter{ filterItemClicked(it) }
-    private val dateFilterAdapter = DateAdapter{ dateFilterItemClicked(it) }
+    private val adapter = ParentAreaAdapter { itemClicked(it) }
+    private val filterAdapter = AreaFilterAdapter { filterItemClicked(it) }
+    private val dateFilterAdapter = DateAdapter { date: Date, position: Int -> dateFilterItemClicked(date, position) }
+
 
     override var context: Context = context
     override var presenter: ILaunchPresenter? = null
     override var loading: LoadingFragment? = null
+
+    val snapHelper = LinearSnapHelper()
 
     override fun constructView(): View = view
 
@@ -48,8 +57,35 @@ class LaunchView(context: AppCompatActivity) : ILaunchView {
     }
 
     override fun bindDateFilterRecyclerViewData(dates: List<Date>) {
+        var mLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        view.horizontal_recycler.layoutManager = mLayoutManager
         view.horizontal_recycler.adapter = dateFilterAdapter
         dateFilterAdapter.data = dates
+        snapHelper.attachToRecyclerView(view.horizontal_recycler)
+        view.horizontal_recycler.smoothScrollToPosition(12)
+
+
+        view.horizontal_recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    val centerView = snapHelper.findSnapView(mLayoutManager)
+                    val pos = mLayoutManager.getPosition(centerView)
+                    Log.e("Snapped Item Position:", "" + pos)
+                }
+            }
+        })
+
+        view.horizontal_recycler.onFlingListener = object : RecyclerView.OnFlingListener() {
+            override fun onFling(velocityX: Int, velocityY: Int): Boolean {
+                var velocityY = velocityY * 0.1
+                view.horizontal_recycler.fling(velocityX, velocityY.toInt())
+                return true
+
+            }
+        }
+
     }
 
     override fun bindRecyclerViewData(areas: List<Area>) {
@@ -66,7 +102,21 @@ class LaunchView(context: AppCompatActivity) : ILaunchView {
         presenter?.filterItemClicked(item)
     }
 
-    private fun dateFilterItemClicked(date: Date) {
-        presenter?.dateFilterItemClicked(date)
+    private fun dateFilterItemClicked(date: Date, position: Int) {
+        presenter?.dateFilterItemClicked(date, position)
+    }
+
+    override fun navigateToPosition(position: Int) {
+//      view.horizontal_recycler.smoothScrollToPosition(position)
+        val smoothScroller: RecyclerView.SmoothScroller = object : LinearSmoothScroller(context) {
+            override fun calculateDtToFit(viewStart: Int, viewEnd: Int, boxStart: Int, boxEnd: Int, snapPreference: Int): Int =
+                    (boxStart + (boxEnd - boxStart) / 2) - (viewStart + (viewEnd - viewStart) / 2)
+
+            override fun calculateSpeedPerPixel(displayMetrics: DisplayMetrics): Float {
+                return 200f / displayMetrics.densityDpi
+            }
+        }
+        smoothScroller.targetPosition = position
+        view.horizontal_recycler.layoutManager?.startSmoothScroll(smoothScroller)
     }
 }

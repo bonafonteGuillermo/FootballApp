@@ -10,7 +10,7 @@ import app.demo.example.com.footballapp.R
 import kotlinx.android.synthetic.main.item_date_filter.view.*
 import java.text.SimpleDateFormat
 
-typealias DateListener = (Date) -> Unit
+typealias DateListener = (Date,Int) -> Unit
 
 class DateAdapter(data: List<Date> = emptyList(), private val listener: DateListener) :
         RecyclerView.Adapter<DateAdapter.MyDateViewHolder>() {
@@ -21,7 +21,7 @@ class DateAdapter(data: List<Date> = emptyList(), private val listener: DateList
             MyDateViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.item_date_filter, parent, false), listener)
 
     override fun onBindViewHolder(holder: MyDateViewHolder, position: Int) {
-        holder.bind(data[position])
+        holder.bind(data[position],position)
     }
 
     override fun getItemCount(): Int = data.size
@@ -29,7 +29,7 @@ class DateAdapter(data: List<Date> = emptyList(), private val listener: DateList
     class MyDateViewHolder(view: View, private val listener: DateListener) :
             RecyclerView.ViewHolder(view) {
 
-        fun bind(item: Date) = with(itemView) {
+        fun bind(item: Date, position: Int) = with(itemView) {
 
             val dayOfMonthNumberFormat = SimpleDateFormat("dd")
             val dayOfWeekStringFormat = SimpleDateFormat("EEE")
@@ -37,7 +37,7 @@ class DateAdapter(data: List<Date> = emptyList(), private val listener: DateList
             tv_filter_date_number.text = dayOfMonthNumberFormat.format(item.time)
             tv_filter_date_day.text = dayOfWeekStringFormat.format(item.time)
 
-            setOnClickListener { listener(item) }
+            setOnClickListener { listener(item,position) }
         }
     }
 }

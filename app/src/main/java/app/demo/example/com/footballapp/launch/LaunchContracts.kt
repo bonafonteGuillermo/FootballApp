@@ -16,11 +16,12 @@ interface ILaunchPresenter : BasePresenter {
     fun onCreate(areas: List<Area>)
     fun itemClicked(item:Area)
     fun filterItemClicked(item:Area)
-    fun dateFilterItemClicked(date:Date)
+    fun dateFilterItemClicked(date:Date,position: Int)
 }
 
 interface ILaunchView : BaseView<ILaunchPresenter> {
     fun bindRecyclerViewData(areas:List<Area>)
     fun bindFilterRecyclerViewData(areas:List<Area>)
     fun bindDateFilterRecyclerViewData(dates: List<Date>)
+    fun navigateToPosition(position : Int)
 }
