@@ -75,6 +75,7 @@ class LaunchView(context: AppCompatActivity) : ILaunchView {
                 }
             }
         })
+        navigateToPosition(11)
     }
 
     override fun bindRecyclerViewData(areas: List<Area>) {
