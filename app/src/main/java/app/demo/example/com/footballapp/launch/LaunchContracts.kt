@@ -21,4 +21,5 @@ interface ILaunchPresenter : BasePresenter {
 interface ILaunchView : BaseView<ILaunchPresenter> {
     fun bindRecyclerViewData(areas:List<Area>)
     fun bindFilterRecyclerViewData(areas:List<Area>)
+    fun navigateToPosition(position: Int)
 }
