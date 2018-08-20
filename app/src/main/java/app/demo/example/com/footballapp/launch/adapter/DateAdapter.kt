@@ -1,6 +1,7 @@
 package app.demo.example.com.footballapp.launch.adapter
 
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +22,7 @@ class DateAdapter(data: List<Date> = emptyList(), private val listener: DateList
             MyDateViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.item_date_filter, parent, false), listener)
 
     override fun onBindViewHolder(holder: MyDateViewHolder, position: Int) {
+        holder.setIsRecyclable(false)
         holder.bind(data[position],position)
     }
 

@@ -1,14 +1,18 @@
 package app.demo.example.com.footballapp.launch
 
 import android.content.Context
+import android.support.constraint.ConstraintLayout
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearSnapHelper
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.TextView
 import app.demo.example.com.footballapp.R
 import app.demo.example.com.footballapp.launch.adapter.AreaFilterAdapter
 import app.demo.example.com.footballapp.launch.adapter.DateAdapter
@@ -53,7 +57,24 @@ class LaunchView(context: AppCompatActivity) : ILaunchView {
     override fun bindDateFilterRecyclerViewData(dates: List<Date>) {
         view.horizontal_recycler.adapter = dateFilterAdapter
         dateFilterAdapter.data = dates
-        LinearSnapHelper().attachToRecyclerView(view.horizontal_recycler)
+        val linearSnapHelper = LinearSnapHelper()
+        linearSnapHelper.attachToRecyclerView(view.horizontal_recycler)
+
+        view.horizontal_recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                val centerView = linearSnapHelper .findSnapView(view.horizontal_recycler.layoutManager) as ConstraintLayout
+                val pos = view.horizontal_recycler.layoutManager.getPosition(centerView)
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    centerView?.getChildAt(1).background = context.getDrawable(R.drawable.circle_shape)
+                    (centerView?.getChildAt(1) as TextView).setTextColor(ContextCompat.getColor(context,R.color.white))
+                }else{
+                    centerView?.getChildAt(1).background = context.getDrawable(R.drawable.circle_shape_white)
+                    (centerView?.getChildAt(1) as TextView).setTextColor(ContextCompat.getColor(context,R.color.grey))
+                }
+            }
+        })
     }
 
     override fun bindRecyclerViewData(areas: List<Area>) {
@@ -79,6 +100,4 @@ class LaunchView(context: AppCompatActivity) : ILaunchView {
         smoothScroller.targetPosition = position
         view.horizontal_recycler.layoutManager?.startSmoothScroll(smoothScroller)
     }
-
-
 }

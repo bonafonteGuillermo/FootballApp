@@ -35,15 +35,12 @@ class LaunchPresenter(private var view: ILaunchView, override var repository: IR
     override fun onDestroy() {}
 
     override fun itemClicked(item: Area) {
-        Log.d("--->", item.parentArea)
     }
 
     override fun filterItemClicked(item: Area) {
-        Log.d("--->", item.parentArea)
     }
 
     override fun dateFilterItemClicked(date: Date,position : Int) {
-        Log.d("--->", date.toString())
         view.navigateToPosition(position)
     }
 
@@ -70,6 +67,5 @@ class LaunchPresenter(private var view: ILaunchView, override var repository: IR
         }
 
         return datesList.toList()
-
     }
 }
