@@ -1,6 +1,5 @@
 package app.demo.example.com.footballapp.launch
 
-import android.os.Parcelable
 import android.util.Log
 import app.demo.example.com.footballapp.model.Area
 import app.demo.example.com.footballapp.repository.IRepository
@@ -36,5 +35,9 @@ class LaunchPresenter(private var view: ILaunchView, override var repository: IR
 
     override fun filterItemClicked(item: Area) {
         Log.d("--->", item.parentArea)
+    }
+
+    override fun currentCenterItem(area: Area) {
+        Log.d("--Current center->", area.parentArea)
     }
 }

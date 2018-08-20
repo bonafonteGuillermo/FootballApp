@@ -1,7 +1,6 @@
 package app.demo.example.com.footballapp.launch
 
 
-import android.os.Parcelable
 import app.demo.example.com.footballapp.app.BasePresenter
 import app.demo.example.com.footballapp.app.BaseView
 import app.demo.example.com.footballapp.model.Area
@@ -14,12 +13,13 @@ import app.demo.example.com.footballapp.model.Area
  */
 interface ILaunchPresenter : BasePresenter {
     fun onCreate(areas: List<Area>)
-    fun itemClicked(item:Area)
-    fun filterItemClicked(item:Area)
+    fun itemClicked(item: Area)
+    fun filterItemClicked(item: Area)
+    fun currentCenterItem(pos: Area)
 }
 
 interface ILaunchView : BaseView<ILaunchPresenter> {
-    fun bindRecyclerViewData(areas:List<Area>)
-    fun bindFilterRecyclerViewData(areas:List<Area>)
+    fun bindRecyclerViewData(areas: List<Area>)
+    fun bindFilterRecyclerViewData(areas: List<Area>)
     fun navigateToPosition(position: Int)
 }

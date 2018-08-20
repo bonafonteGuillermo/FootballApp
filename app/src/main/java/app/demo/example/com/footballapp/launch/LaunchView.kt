@@ -59,6 +59,7 @@ class LaunchView(context: AppCompatActivity) : ILaunchView {
                 if (newState == RecyclerView.SCROLL_STATE_IDLE || newState == RecyclerView.SCROLL_STATE_DRAGGING || newState == RecyclerView.SCROLL_STATE_SETTLING) {
                     centerView.background = context.getDrawable(R.drawable.circle_shape)
                     centerView.setTextColor(ContextCompat.getColor(context,R.color.white))
+                    presenter?.currentCenterItem(areas[pos])
                 }else{
                     centerView.background = context.getDrawable(R.drawable.circle_shape_white)
                     centerView.setTextColor(ContextCompat.getColor(context,R.color.grey))
