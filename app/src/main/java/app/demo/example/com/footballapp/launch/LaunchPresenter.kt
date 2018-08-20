@@ -17,14 +17,13 @@ class LaunchPresenter(private var view: ILaunchView, override var repository: IR
     private lateinit var subscription: Disposable
     var areas : List<Area> = emptyList()
 
-    override fun onCreate() {
-
-    }
+    override fun onCreate() {}
 
     override fun onCreate(areas: List<Area>) {
         this.areas = areas.toList()
-        view.bindRecyclerViewData(this.areas)
+//        view.bindRecyclerViewData(this.areas)
         view.bindFilterRecyclerViewData(this.areas)
+        view.bindViewPager(this.areas)
     }
 
     override fun onDestroy() {}

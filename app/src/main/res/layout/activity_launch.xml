@@ -14,32 +14,27 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.05" />
 
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/horizontal_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:clipToPadding="false"
         android:orientation="horizontal"
-        android:background="@color/white"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/horizontal_guideline"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
         tools:itemCount="6"
         tools:listitem="@layout/item_area_filter" />
 
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipToPadding="false"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@+id/horizontal_recycler"
-        tools:itemCount="6"
-        tools:listitem="@layout/item_area">
-
-
-    </android.support.v7.widget.RecyclerView>
-
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontal_recycler" />
 
 </android.support.constraint.ConstraintLayout>

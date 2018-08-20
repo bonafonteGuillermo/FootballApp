@@ -1,6 +1,7 @@
 package app.demo.example.com.footballapp.launch
 
 import android.content.Context
+import android.net.Uri
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
@@ -13,11 +14,13 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import app.demo.example.com.footballapp.R
 import app.demo.example.com.footballapp.launch.adapter.AreaFilterAdapter
+import app.demo.example.com.footballapp.launch.adapter.FragmentViewPagerAdapter
 import app.demo.example.com.footballapp.launch.adapter.ParentAreaAdapter
 import app.demo.example.com.footballapp.loading.LoadingFragment
 import app.demo.example.com.footballapp.model.Area
 import app.demo.example.com.footballapp.utils.getCustomSmoothScroller
 import kotlinx.android.synthetic.main.activity_launch.view.*
+import kotlinx.android.synthetic.main.fragment_launch_slide.view.*
 
 
 /**
@@ -26,11 +29,13 @@ import kotlinx.android.synthetic.main.activity_launch.view.*
  *
  * Created by Guillermo Bonafonte Criado
  */
-class LaunchView(context: AppCompatActivity) : ILaunchView {
+class LaunchView(context: AppCompatActivity) : ILaunchView, LaunchFragmentSlide.OnFragmentInteractionListener {
 
     var view: View
+
     private val adapter = ParentAreaAdapter { itemClicked(it) }
     private val filterAdapter = AreaFilterAdapter { area: Area, position: Int ->  filterItemClicked(area,position) }
+    private val pagerAdapter = FragmentViewPagerAdapter(context.supportFragmentManager)
 
     override var context: Context = context
     override var presenter: ILaunchPresenter? = null
@@ -51,7 +56,6 @@ class LaunchView(context: AppCompatActivity) : ILaunchView {
         linearSnapHelper.attachToRecyclerView(view.horizontal_recycler)
 
         view.horizontal_recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-
             override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 val centerView = linearSnapHelper .findSnapView(view.horizontal_recycler.layoutManager) as TextView
@@ -75,6 +79,10 @@ class LaunchView(context: AppCompatActivity) : ILaunchView {
         adapter.data = areas
     }
 
+    override fun bindViewPager(areas: List<Area>) {
+        view.pager.adapter = pagerAdapter
+    }
+
     private fun itemClicked(item: Area) {
         presenter?.itemClicked(item)
     }
@@ -88,5 +96,8 @@ class LaunchView(context: AppCompatActivity) : ILaunchView {
         val smoothScroller = view.horizontal_recycler.getCustomSmoothScroller()
         smoothScroller.targetPosition = position
         view.horizontal_recycler.layoutManager?.startSmoothScroll(smoothScroller)
+    }
+
+    override fun onFragmentInteraction(uri: Uri) {
     }
 }
