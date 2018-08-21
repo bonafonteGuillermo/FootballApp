@@ -1,24 +1,16 @@
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/slide_recycler"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:clipToPadding="false"
     android:padding="16dp"
-    android:background="@color/grey"
-    tools:context="app.demo.example.com.footballapp.launch.LaunchFragmentSlide">
+    app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+    app:layout_constraintTop_toBottomOf="@+id/horizontal_recycler"
+    tools:itemCount="6"
+    tools:listitem="@layout/item_area">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipToPadding="false"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@+id/horizontal_recycler"
-        tools:itemCount="6"
-        android:background="@color/white"
-        tools:listitem="@layout/item_area">
+</android.support.v7.widget.RecyclerView>
 
-    </android.support.v7.widget.RecyclerView>
-
-</FrameLayout>

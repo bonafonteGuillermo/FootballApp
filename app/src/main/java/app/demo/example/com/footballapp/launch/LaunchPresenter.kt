@@ -19,11 +19,11 @@ class LaunchPresenter(private var view: ILaunchView, override var repository: IR
 
     override fun onCreate() {}
 
-    override fun onCreate(areas: List<Area>) {
+    override fun onCreate(areas: ArrayList<Area>) {
         this.areas = areas.toList()
 //        view.bindRecyclerViewData(this.areas)
         view.bindFilterRecyclerViewData(this.areas)
-        view.bindViewPager(this.areas)
+        view.bindViewPager(areas)
     }
 
     override fun onDestroy() {}

@@ -12,15 +12,14 @@ import app.demo.example.com.footballapp.model.Area
  * Created by Guillermo Bonafonte Criado
  */
 interface ILaunchPresenter : BasePresenter {
-    fun onCreate(areas: List<Area>)
+    fun onCreate(areas: ArrayList<Area>)
     fun itemClicked(item: Area)
     fun filterItemClicked(item: Area)
     fun currentCenterItem(pos: Area)
 }
 
 interface ILaunchView : BaseView<ILaunchPresenter> {
-    fun bindRecyclerViewData(areas: List<Area>)
     fun bindFilterRecyclerViewData(areas: List<Area>)
-    fun bindViewPager(areas: List<Area>)
+    fun bindViewPager(areas: ArrayList<Area>)
     fun navigateToPosition(position: Int)
 }

@@ -46,7 +46,7 @@ class LaunchActivity : AppCompatActivity() {
         val bundle = intent.extras
         if (bundle.getParcelableArrayList<Parcelable>("areas") != null){
             var areas = bundle.getParcelableArrayList<Area>("areas")
-            presenter.onCreate(areas.toList())
+            presenter.onCreate(areas)
         }else{
             presenter.onCreate()
         }

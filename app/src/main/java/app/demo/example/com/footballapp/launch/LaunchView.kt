@@ -4,7 +4,6 @@ import android.content.Context
 import android.net.Uri
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearSnapHelper
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -15,12 +14,11 @@ import android.widget.TextView
 import app.demo.example.com.footballapp.R
 import app.demo.example.com.footballapp.launch.adapter.AreaFilterAdapter
 import app.demo.example.com.footballapp.launch.adapter.FragmentViewPagerAdapter
-import app.demo.example.com.footballapp.launch.adapter.ParentAreaAdapter
+import app.demo.example.com.footballapp.launch.adapter.ZoomOutPageTransformer
 import app.demo.example.com.footballapp.loading.LoadingFragment
 import app.demo.example.com.footballapp.model.Area
 import app.demo.example.com.footballapp.utils.getCustomSmoothScroller
 import kotlinx.android.synthetic.main.activity_launch.view.*
-import kotlinx.android.synthetic.main.fragment_launch_slide.view.*
 
 
 /**
@@ -33,9 +31,9 @@ class LaunchView(context: AppCompatActivity) : ILaunchView, LaunchFragmentSlide.
 
     var view: View
 
-    private val adapter = ParentAreaAdapter { itemClicked(it) }
     private val filterAdapter = AreaFilterAdapter { area: Area, position: Int ->  filterItemClicked(area,position) }
-    private val pagerAdapter = FragmentViewPagerAdapter(context.supportFragmentManager)
+    private var pagerAdapter : FragmentViewPagerAdapter? = null
+    private val fm = context.supportFragmentManager
 
     override var context: Context = context
     override var presenter: ILaunchPresenter? = null
@@ -73,18 +71,10 @@ class LaunchView(context: AppCompatActivity) : ILaunchView, LaunchFragmentSlide.
         navigateToPosition(2)
     }
 
-    override fun bindRecyclerViewData(areas: List<Area>) {
-        view.recycler.addItemDecoration(DividerItemDecoration(view.recycler.context, DividerItemDecoration.VERTICAL))
-        view.recycler.adapter = adapter
-        adapter.data = areas
-    }
-
-    override fun bindViewPager(areas: List<Area>) {
+    override fun bindViewPager(areas: ArrayList<Area>) {
+        pagerAdapter = FragmentViewPagerAdapter(areas,fm)
+        view.pager.setPageTransformer(false, ZoomOutPageTransformer())
         view.pager.adapter = pagerAdapter
-    }
-
-    private fun itemClicked(item: Area) {
-        presenter?.itemClicked(item)
     }
 
     private fun filterItemClicked(item: Area, position: Int) {

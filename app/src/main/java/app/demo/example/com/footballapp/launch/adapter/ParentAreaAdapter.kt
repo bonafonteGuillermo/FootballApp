@@ -11,7 +11,7 @@ import kotlin.properties.Delegates
 
 typealias Listener = (Area) -> Unit
 
-class ParentAreaAdapter(data: List<Area> = emptyList(), private val listener: Listener) :
+class ParentAreaAdapter(data: ArrayList<Area> = arrayListOf(), private val listener: Listener) :
         RecyclerView.Adapter<ParentAreaAdapter.MyParentAreaViewHolder>() {
 
     var data by Delegates.observable(data) { _, _, _ -> notifyDataSetChanged() }

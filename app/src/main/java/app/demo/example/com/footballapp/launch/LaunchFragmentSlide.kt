@@ -3,29 +3,47 @@ package app.demo.example.com.footballapp.launch
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import app.demo.example.com.footballapp.R
+import app.demo.example.com.footballapp.launch.adapter.ParentAreaAdapter
+import app.demo.example.com.footballapp.model.Area
+import kotlinx.android.synthetic.main.fragment_launch_slide.*
+import kotlinx.android.synthetic.main.fragment_launch_slide.view.*
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private const val ARG_PARAM1 = "position"
+private const val ARG_PARAM2 = "parentAreas"
 
 class LaunchFragmentSlide : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
-    private var listener: OnFragmentInteractionListener? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var parentAreas: ArrayList<Area> = arrayListOf()
+    private var area: Area? = null
+    private var listener: OnFragmentInteractionListener? = null
+    private val adapter = ParentAreaAdapter { itemClicked(it) }
+    private lateinit var myRootView: View
+    private lateinit var recycler : RecyclerView
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_launch_slide, container, false)
+        arguments?.let {
+            area = it.getParcelable(ARG_PARAM1)
+            parentAreas = it.getParcelableArrayList(ARG_PARAM2)
+        }
+        var parent = FrameLayout(context)
+        myRootView = LayoutInflater.from(context).inflate(R.layout.fragment_launch_slide, parent, true)
+        recycler = myRootView.findViewById(R.id.slide_recycler) as RecyclerView
+        bindRecyclerViewData(parentAreas)
+        return myRootView
+    }
+
+    private fun bindRecyclerViewData(areas: ArrayList<Area>) {
+        recycler.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+        recycler.adapter = adapter
+        adapter.data = areas
     }
 
     fun onButtonPressed(uri: Uri) {
@@ -43,12 +61,16 @@ class LaunchFragmentSlide : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(param1: Area, param2 : ArrayList<Area>) =
                 LaunchFragmentSlide().apply {
                     arguments = Bundle().apply {
-                        putString(ARG_PARAM1, param1)
-                        putString(ARG_PARAM2, param2)
+                        putParcelable(ARG_PARAM1, param1)
+                        putParcelableArrayList(ARG_PARAM2, param2)
                     }
                 }
+    }
+
+    private fun itemClicked(item: Area) {
+//        presenter?.itemClicked(item)
     }
 }
