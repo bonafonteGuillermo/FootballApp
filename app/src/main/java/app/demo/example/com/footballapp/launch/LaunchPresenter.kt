@@ -12,7 +12,7 @@ import io.reactivex.disposables.Disposable
  *
  * Created by Guillermo Bonafonte Criado
  */
-class LaunchPresenter(private var view: ILaunchView, override var repository: IRepository, private var schedulers: Schedulers) : ILaunchPresenter {
+class LaunchPresenter(private var view: ILaunchView, override var repository: IRepository, override var schedulers: Schedulers) : ILaunchPresenter {
 
     private lateinit var subscription: Disposable
     var areas : List<Area> = emptyList()

@@ -11,7 +11,7 @@ import io.reactivex.disposables.Disposable
  *
  * Created by Guillermo Bonafonte Criado
  */
-class SplashPresenter(private var view: ISplashView, override var repository: IRepository, private var schedulers: Schedulers) : ISplashPresenter {
+class SplashPresenter(private var view: ISplashView, override var repository: IRepository, override var schedulers: Schedulers) : ISplashPresenter {
 
     private lateinit var subscription: Disposable
     private val handler : Handler = Handler()

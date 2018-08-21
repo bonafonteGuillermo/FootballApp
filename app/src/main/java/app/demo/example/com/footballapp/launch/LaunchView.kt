@@ -15,6 +15,7 @@ import app.demo.example.com.footballapp.R
 import app.demo.example.com.footballapp.launch.adapter.AreaFilterAdapter
 import app.demo.example.com.footballapp.launch.adapter.FragmentViewPagerAdapter
 import app.demo.example.com.footballapp.launch.adapter.ZoomOutPageTransformer
+import app.demo.example.com.footballapp.launch.slide.LaunchSlideFragment
 import app.demo.example.com.footballapp.loading.LoadingFragment
 import app.demo.example.com.footballapp.model.Area
 import app.demo.example.com.footballapp.utils.getCustomSmoothScroller
@@ -27,7 +28,7 @@ import kotlinx.android.synthetic.main.activity_launch.view.*
  *
  * Created by Guillermo Bonafonte Criado
  */
-class LaunchView(context: AppCompatActivity) : ILaunchView, LaunchFragmentSlide.OnFragmentInteractionListener {
+class LaunchView(context: AppCompatActivity) : ILaunchView, LaunchSlideFragment.OnFragmentInteractionListener {
 
     var view: View
 
