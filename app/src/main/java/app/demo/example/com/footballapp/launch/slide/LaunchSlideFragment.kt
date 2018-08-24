@@ -4,14 +4,11 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import app.demo.example.com.footballapp.app.App
-import app.demo.example.com.footballapp.launch.adapter.ParentAreaAdapter
-import app.demo.example.com.footballapp.launch.injection.LaunchContextModule
 import app.demo.example.com.footballapp.launch.slide.injection.DaggerLaunchSlideComponent
 import app.demo.example.com.footballapp.launch.slide.injection.LaunchSlideContextModule
 import app.demo.example.com.footballapp.model.Area
@@ -27,12 +24,9 @@ class LaunchSlideFragment : Fragment() {
     @Inject
     lateinit var presenter: ILaunchSlidePresenter
 
-    private var parentAreas: ArrayList<Area> = arrayListOf()
-    private var area: Area? = null
+    private var areas: ArrayList<Area> = arrayListOf()
+    private lateinit var parentArea: Area
     private var listener: OnFragmentInteractionListener? = null
-
-    private lateinit var myRootView: View
-    private lateinit var recycler: RecyclerView
 
     companion object {
         @JvmStatic
@@ -47,8 +41,8 @@ class LaunchSlideFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         arguments?.let {
-            area = it.getParcelable(ARG_PARAM1)
-            parentAreas = it.getParcelableArrayList(ARG_PARAM2)
+            parentArea = it.getParcelable(ARG_PARAM1)
+            areas = it.getParcelableArrayList(ARG_PARAM2)
         }
 
         DaggerLaunchSlideComponent.builder()
@@ -58,7 +52,7 @@ class LaunchSlideFragment : Fragment() {
                 .inject(this)
 
         view.presenter = presenter
-        presenter.onCreate(parentAreas)
+        presenter.onCreate(parentArea,areas)
 
         return view.constructView()
     }

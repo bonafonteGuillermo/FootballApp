@@ -14,14 +14,12 @@ import io.reactivex.disposables.Disposable
  */
 class LaunchPresenter(private var view: ILaunchView, override var repository: IRepository, override var schedulers: Schedulers) : ILaunchPresenter {
 
-    private lateinit var subscription: Disposable
     var areas : List<Area> = emptyList()
 
     override fun onCreate() {}
 
     override fun onCreate(areas: ArrayList<Area>) {
         this.areas = areas.toList()
-//        view.bindRecyclerViewData(this.areas)
         view.bindFilterRecyclerViewData(this.areas)
         view.bindViewPager(areas)
     }

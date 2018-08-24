@@ -12,6 +12,7 @@ import app.demo.example.com.footballapp.app.BaseView
 import app.demo.example.com.footballapp.launch.adapter.ParentAreaAdapter
 import app.demo.example.com.footballapp.loading.LoadingFragment
 import app.demo.example.com.footballapp.model.Area
+import kotlinx.android.synthetic.main.fragment_launch_slide.view.*
 
 /**
  *
@@ -25,9 +26,6 @@ class LaunchSlideView(context : AppCompatActivity) : ILaunchSlideView {
     override var context: Context = context
     override var loading: LoadingFragment? = null
     override var presenter: ILaunchSlidePresenter? = null
-
-    private val adapter = ParentAreaAdapter { itemClicked(it) }
-
     override fun constructView(): View = view
 
     init{
@@ -36,10 +34,15 @@ class LaunchSlideView(context : AppCompatActivity) : ILaunchSlideView {
     }
 
     override fun bindRecyclerViewData(areas: ArrayList<Area>) {
-        val recycler = view.findViewById(R.id.slide_recycler) as RecyclerView
-        recycler.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-        recycler.adapter = adapter
+        val adapter = ParentAreaAdapter { itemClicked(it) }
+//        val recycler = view.findViewById(R.id.slide_recycler) as RecyclerView
+        view.slide_recycler.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+        view.slide_recycler.adapter = adapter
         adapter.data = areas
+    }
+
+    override fun setParentAreaTitle(parentAreaName: String) {
+        view.tv_parent_area_name.text = parentAreaName
     }
 
     private fun itemClicked(item: Area) {
