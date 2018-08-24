@@ -5,7 +5,7 @@ import app.demo.example.com.footballapp.repository.IRepository
 import io.reactivex.Single
 
 class Repository : IRepository {
-    override fun getLocalGroupedAreas(): List<Area> {
+    override fun getLocallySavedParentAreas(): List<Area> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
@@ -13,7 +13,7 @@ class Repository : IRepository {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getLocalAreas(): List<Area> {
+    override fun getLocallySavedAreasByParentArea(parentAreaName: String): List<Area> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

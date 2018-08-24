@@ -24,13 +24,13 @@ class Repository(private val api: Api,
 
         Observable.just(localStorage).subscribeOn(schedulers.io()).subscribe(
                 { db ->
-                    val areasLocallySaved = getLocalGroupedAreas()
+                    val areasLocallySaved = getLocallySavedParentAreas()
                     if (areasLocallySaved.isEmpty()) {
                         var response = api.getAreas(getFootballDataApiToken())
                         response.subscribe(
                                 { areasResponse ->
                                     saveAreasInLocalStorage(areasResponse.areas)
-                                    publisher.onSuccess(getLocalGroupedAreas())
+                                    publisher.onSuccess(getLocallySavedParentAreas())
                                 },
                                 { error ->
                                     publisher.onError(error)
@@ -49,9 +49,9 @@ class Repository(private val api: Api,
     //endregion
 
     //region LocaleStorage
-    override fun getLocalAreas(): List<Area> = localStorage.areasDao().getAreas()
+    override fun getLocallySavedAreasByParentArea(parentAreaName : String): List<Area> = localStorage.areasDao().getAreas(parentAreaName)
 
-    override fun getLocalGroupedAreas(): List<Area> = localStorage.areasDao().getGroupedAreas()
+    override fun getLocallySavedParentAreas(): List<Area> = localStorage.areasDao().getGroupedAreas()
 
     override fun saveAreasInLocalStorage(areasList: List<Area>) {
         for (area in areasList) {

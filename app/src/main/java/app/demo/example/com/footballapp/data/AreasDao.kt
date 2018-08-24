@@ -14,8 +14,8 @@ import app.demo.example.com.footballapp.model.Area
 @Dao
 interface AreasDao {
 
-    @Query("SELECT id,name,country_code,parent_area_id,parent_area FROM area")
-    fun getAreas(): List<Area>
+    @Query("SELECT id,name,country_code,parent_area_id,parent_area FROM area WHERE parent_area LIKE :parentAreaName")
+    fun getAreas(parentAreaName : String): List<Area>
 
     @Query("SELECT id,name,country_code,parent_area_id,parent_area " +
             "FROM area " +

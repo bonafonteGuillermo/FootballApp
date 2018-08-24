@@ -18,12 +18,11 @@
         android:id="@+id/horizontal_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:clipToPadding="false"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/horizontal_guideline"
+        app:layout_constraintTop_toTopOf="@id/horizontal_guideline"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"
         tools:itemCount="6"
         tools:listitem="@layout/item_area_filter" />
