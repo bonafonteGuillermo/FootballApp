@@ -30,10 +30,20 @@ class LaunchSlideFragment : Fragment() {
     private var parentAreas: ArrayList<Area> = arrayListOf()
     private var area: Area? = null
     private var listener: OnFragmentInteractionListener? = null
-    private val adapter = ParentAreaAdapter { itemClicked(it) }
+
     private lateinit var myRootView: View
     private lateinit var recycler: RecyclerView
 
+    companion object {
+        @JvmStatic
+        fun newInstance(param1: Area, param2: ArrayList<Area>) =
+                LaunchSlideFragment().apply {
+                    arguments = Bundle().apply {
+                        putParcelable(ARG_PARAM1, param1)
+                        putParcelableArrayList(ARG_PARAM2, param2)
+                    }
+                }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         arguments?.let {
@@ -48,21 +58,9 @@ class LaunchSlideFragment : Fragment() {
                 .inject(this)
 
         view.presenter = presenter
-
-        presenter.onCreate()
-
-        /*var parent = FrameLayout(context)
-        myRootView = LayoutInflater.from(context).inflate(R.layout.fragment_launch_slide, parent, true)
-        recycler = myRootView.findViewById(R.id.slide_recycler) as RecyclerView
-        bindRecyclerViewData(parentAreas)*/
+        presenter.onCreate(parentAreas)
 
         return view.constructView()
-    }
-
-    private fun bindRecyclerViewData(areas: ArrayList<Area>) {
-        recycler.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-        recycler.adapter = adapter
-        adapter.data = areas
     }
 
     fun onButtonPressed(uri: Uri) {
@@ -76,20 +74,5 @@ class LaunchSlideFragment : Fragment() {
 
     interface OnFragmentInteractionListener {
         fun onFragmentInteraction(uri: Uri)
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: Area, param2: ArrayList<Area>) =
-                LaunchSlideFragment().apply {
-                    arguments = Bundle().apply {
-                        putParcelable(ARG_PARAM1, param1)
-                        putParcelableArrayList(ARG_PARAM2, param2)
-                    }
-                }
-    }
-
-    private fun itemClicked(item: Area) {
-//        presenter?.itemClicked(item)
     }
 }

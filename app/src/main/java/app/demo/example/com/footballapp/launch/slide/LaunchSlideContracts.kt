@@ -2,6 +2,7 @@ package app.demo.example.com.footballapp.launch.slide
 
 import app.demo.example.com.footballapp.app.BasePresenter
 import app.demo.example.com.footballapp.app.BaseView
+import app.demo.example.com.footballapp.model.Area
 
 /**
  *
@@ -10,9 +11,9 @@ import app.demo.example.com.footballapp.app.BaseView
  */
 
 interface ILaunchSlidePresenter : BasePresenter {
-
+    fun onCreate(areas: ArrayList<Area>)
 }
 
 interface ILaunchSlideView : BaseView<ILaunchSlidePresenter> {
-
+    fun bindRecyclerViewData(areas: ArrayList<Area>)
 }

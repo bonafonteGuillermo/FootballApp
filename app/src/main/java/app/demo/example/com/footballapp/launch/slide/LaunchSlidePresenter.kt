@@ -1,5 +1,6 @@
 package app.demo.example.com.footballapp.launch.slide
 
+import app.demo.example.com.footballapp.model.Area
 import app.demo.example.com.footballapp.repository.IRepository
 import app.demo.example.com.footballapp.rx.Schedulers
 
@@ -10,9 +11,11 @@ import app.demo.example.com.footballapp.rx.Schedulers
  */
 class LaunchSlidePresenter(private var view: ILaunchSlideView, override var repository: IRepository, override var schedulers: Schedulers) : ILaunchSlidePresenter{
 
-
-
     override fun onCreate() {
+    }
+
+    override fun onCreate(areas: ArrayList<Area>) {
+        view.bindRecyclerViewData(areas)
     }
 
     override fun onDestroy() {
