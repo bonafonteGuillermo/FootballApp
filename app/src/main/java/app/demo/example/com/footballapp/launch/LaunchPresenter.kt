@@ -4,7 +4,6 @@ import android.util.Log
 import app.demo.example.com.footballapp.model.Area
 import app.demo.example.com.footballapp.repository.IRepository
 import app.demo.example.com.footballapp.rx.Schedulers
-import io.reactivex.disposables.Disposable
 
 /**
  *
@@ -20,7 +19,7 @@ class LaunchPresenter(private var view: ILaunchView, override var repository: IR
 
     override fun onCreate(areas: ArrayList<Area>) {
         this.areas = areas.toList()
-        view.bindFilterRecyclerViewData(this.areas)
+        view.bindTabLayoutData(this.areas)
         view.bindViewPager(areas)
     }
 

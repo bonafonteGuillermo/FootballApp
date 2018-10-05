@@ -14,7 +14,6 @@ class LaunchSlidePresenter(private var view: ILaunchSlideView, override var repo
     override fun onCreate() {}
 
     override fun onCreate(parentArea: Area, areas: ArrayList<Area>) {
-        parentArea.name?.let { view.setParentAreaTitle(it) }
         view.bindRecyclerViewData(areas)
     }
 

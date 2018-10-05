@@ -24,7 +24,7 @@ class SplashPresenter(private var view: ISplashView, override var repository: IR
     }
 
     override fun onDestroy() {
-        subscription.dispose()
+//        subscription?.dispose()
     }
 
     private fun getAreas(): Disposable {

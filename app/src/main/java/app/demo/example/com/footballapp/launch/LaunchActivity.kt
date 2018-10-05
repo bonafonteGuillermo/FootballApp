@@ -1,16 +1,12 @@
 package app.demo.example.com.footballapp.launch
 
-import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
 import android.support.v7.app.AppCompatActivity
-import android.view.WindowManager
 import app.demo.example.com.footballapp.app.App
 import app.demo.example.com.footballapp.launch.injection.DaggerLaunchComponent
 import app.demo.example.com.footballapp.launch.injection.LaunchContextModule
 import app.demo.example.com.footballapp.model.Area
-
 import javax.inject.Inject
 
 /**
@@ -40,13 +36,12 @@ class LaunchActivity : AppCompatActivity() {
         view.presenter = presenter
 
         val bundle = intent.extras
-        if (bundle.getParcelableArrayList<Parcelable>("areas") != null){
+        if (bundle.getParcelableArrayList<Parcelable>("areas") != null) {
             var areas = bundle.getParcelableArrayList<Area>("areas")
             presenter.onCreate(areas)
-        }else{
+        } else {
             presenter.onCreate()
         }
-
     }
 
     override fun onDestroy() {

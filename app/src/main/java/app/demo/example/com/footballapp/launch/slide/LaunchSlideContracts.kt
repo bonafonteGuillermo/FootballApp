@@ -16,5 +16,4 @@ interface ILaunchSlidePresenter : BasePresenter {
 
 interface ILaunchSlideView : BaseView<ILaunchSlidePresenter> {
     fun bindRecyclerViewData(areas: ArrayList<Area>)
-    fun setParentAreaTitle(parentAreaName : String)
 }
