@@ -28,7 +28,7 @@ class SplashPresenter(private var view: ISplashView, override var repository: IR
     }
 
     private fun getAreas(): Disposable {
-        return repository.getAreas()
+        return repository.getParentAreas()
                 .subscribeOn(schedulers.internet())
                 .observeOn(schedulers.androidThread())
                 .subscribe(

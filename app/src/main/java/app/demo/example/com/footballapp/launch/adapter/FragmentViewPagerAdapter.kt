@@ -14,7 +14,7 @@ import app.demo.example.com.footballapp.model.Area
 class FragmentViewPagerAdapter(private var parentAreas: ArrayList<Area>, fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
-        return LaunchSlideFragment.newInstance(parentAreas[position], parentAreas)
+        return LaunchSlideFragment.newInstance(parentAreas[position])
     }
 
     override fun getCount(): Int {

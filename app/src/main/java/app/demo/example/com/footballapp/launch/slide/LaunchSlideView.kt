@@ -31,7 +31,7 @@ class LaunchSlideView(context: AppCompatActivity) : ILaunchSlideView {
         view = LayoutInflater.from(context).inflate(R.layout.fragment_launch_slide, parent, true)
     }
 
-    override fun bindRecyclerViewData(areas: ArrayList<Area>) {
+    override fun bindRecyclerViewData(areas: List<Area>) {
         val adapter = ParentAreaAdapter { itemClicked(it) }
         view.slide_recycler.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         view.slide_recycler.adapter = adapter

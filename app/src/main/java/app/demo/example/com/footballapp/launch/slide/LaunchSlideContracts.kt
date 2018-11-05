@@ -11,9 +11,9 @@ import app.demo.example.com.footballapp.model.Area
  */
 
 interface ILaunchSlidePresenter : BasePresenter {
-    fun onCreate(parentArea: Area, areas : ArrayList<Area>)
+    fun onCreate(parentArea: Area)
 }
 
 interface ILaunchSlideView : BaseView<ILaunchSlidePresenter> {
-    fun bindRecyclerViewData(areas: ArrayList<Area>)
+    fun bindRecyclerViewData(areas: List<Area>)
 }

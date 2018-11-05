@@ -30,11 +30,10 @@ class LaunchSlideFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(param1: Area, param2: ArrayList<Area>) =
+        fun newInstance(param1: Area) =
                 LaunchSlideFragment().apply {
                     arguments = Bundle().apply {
                         putParcelable(ARG_PARAM1, param1)
-                        putParcelableArrayList(ARG_PARAM2, param2)
                     }
                 }
     }
@@ -42,7 +41,6 @@ class LaunchSlideFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         arguments?.let {
             parentArea = it.getParcelable(ARG_PARAM1)
-            areas = it.getParcelableArrayList(ARG_PARAM2)
         }
 
         DaggerLaunchSlideComponent.builder()
@@ -52,7 +50,7 @@ class LaunchSlideFragment : Fragment() {
                 .inject(this)
 
         view.presenter = presenter
-        presenter.onCreate(parentArea,areas)
+        presenter.onCreate(parentArea)
 
         return view.constructView()
     }

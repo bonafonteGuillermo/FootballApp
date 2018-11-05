@@ -3,6 +3,7 @@ package app.demo.example.com.footballapp.launch.slide
 import app.demo.example.com.footballapp.model.Area
 import app.demo.example.com.footballapp.repository.IRepository
 import app.demo.example.com.footballapp.rx.Schedulers
+import io.reactivex.Observable
 
 /**
  *
@@ -13,8 +14,20 @@ class LaunchSlidePresenter(private var view: ILaunchSlideView, override var repo
 
     override fun onCreate() {}
 
-    override fun onCreate(parentArea: Area, areas: ArrayList<Area>) {
-        view.bindRecyclerViewData(areas)
+    override fun onCreate(parentArea: Area) {
+        repository.getLocallySavedAreasByParentArea(parentArea)
+                .subscribeOn(schedulers.internet())
+                .observeOn(schedulers.androidThread())
+                .subscribe(
+                        { areas ->
+                            view.hideLoadingFragment()
+                            view.bindRecyclerViewData(areas)
+                        },
+                        {
+                            view.hideLoadingFragment()
+                            //TODO Show error dialog or whatever
+                        }
+                )
     }
 
     override fun onDestroy() {
