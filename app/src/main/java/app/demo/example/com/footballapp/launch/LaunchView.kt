@@ -13,6 +13,7 @@ import app.demo.example.com.footballapp.launch.slide.LaunchSlideFragment
 import app.demo.example.com.footballapp.loading.LoadingFragment
 import app.demo.example.com.footballapp.model.Area
 import kotlinx.android.synthetic.main.activity_launch.view.*
+import kotlinx.android.synthetic.main.item_tab_layout.view.*
 
 
 /**
@@ -45,13 +46,16 @@ class LaunchView(context: AppCompatActivity) : ILaunchView, LaunchSlideFragment.
         view.pager.adapter = pagerAdapter
     }
 
-    override fun bindTabLayout() {
+    override fun bindTabLayout(areas: ArrayList<Area>) {
         view.tablayout.setupWithViewPager(view.pager)
+
 
         // Iterate over all tabs and set the custom view
         for (i in 0 until view.tablayout.tabCount) {
             val tab = view.tablayout.getTabAt(i)
-            tab?.customView = LayoutInflater.from(context).inflate(R.layout.item_tab_layout, null)
+            val customTabLayoutView = LayoutInflater.from(context).inflate(R.layout.item_tab_layout, null)
+            tab?.customView = customTabLayoutView
+            tab?.customView?.tv_tab_layout?.text = areas[i].parentArea
         }
 
     }

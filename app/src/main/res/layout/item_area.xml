@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+        android:drawableEnd="@drawable/ic_arrow_more"
         tools:text="@tools:sample/cities"/>
 
 </android.support.constraint.ConstraintLayout>

@@ -20,7 +20,7 @@ class LaunchPresenter(private var view: ILaunchView, override var repository: IR
     override fun onCreate(areas: ArrayList<Area>) {
         this.areas = areas.toList()
         view.bindViewPager(areas)
-        view.bindTabLayout()
+        view.bindTabLayout(areas)
     }
 
     override fun onDestroy() {}

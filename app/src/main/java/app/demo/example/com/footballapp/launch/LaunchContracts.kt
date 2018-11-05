@@ -18,5 +18,5 @@ interface ILaunchPresenter : BasePresenter {
 
 interface ILaunchView : BaseView<ILaunchPresenter> {
     fun bindViewPager(areas: ArrayList<Area>)
-    fun bindTabLayout()
+    fun bindTabLayout(areas: ArrayList<Area>)
 }
