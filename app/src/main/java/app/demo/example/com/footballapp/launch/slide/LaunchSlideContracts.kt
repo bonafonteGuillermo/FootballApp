@@ -12,6 +12,7 @@ import app.demo.example.com.footballapp.model.Area
 
 interface ILaunchSlidePresenter : BasePresenter {
     fun onCreate(parentArea: Area)
+    fun itemClicked(item : Area)
 }
 
 interface ILaunchSlideView : BaseView<ILaunchSlidePresenter> {

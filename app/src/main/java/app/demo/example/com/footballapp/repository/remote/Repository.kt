@@ -1,5 +1,6 @@
 package app.demo.example.com.footballapp.repository.remote
 
+import android.annotation.SuppressLint
 import android.content.SharedPreferences
 import app.demo.example.com.footballapp.data.AppDatabase
 import app.demo.example.com.footballapp.model.Area
@@ -18,12 +19,13 @@ class Repository(private val api: Api,
 ) : IRepository {
 
     //region RemoteRequest
+    @SuppressLint("CheckResult")
     override fun getParentAreas(): Single<List<Area>> {
 
         var publisher = SingleSubject.create<List<Area>>()
 
         Observable.just(localStorage).subscribeOn(schedulers.io()).subscribe(
-                { db ->
+                {
                     val parentAreasLocallySaved = getLocallySavedParentAreas()
                     if (parentAreasLocallySaved.isEmpty()) {
                         var response = api.getAreas(getFootballDataApiToken())
@@ -49,6 +51,7 @@ class Repository(private val api: Api,
     //endregion
 
     //region LocaleStorage
+    @SuppressLint("CheckResult")
     override fun getLocallySavedAreasByParentArea(parentArea: Area): Single<List<Area>> {
         var publisher = SingleSubject.create<List<Area>>()
         Observable.just(localStorage).subscribeOn(schedulers.io()).subscribe(

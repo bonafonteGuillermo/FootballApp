@@ -1,5 +1,6 @@
 package app.demo.example.com.footballapp.launch.slide
 
+import android.util.Log
 import app.demo.example.com.footballapp.model.Area
 import app.demo.example.com.footballapp.repository.IRepository
 import app.demo.example.com.footballapp.rx.Schedulers
@@ -29,6 +30,11 @@ class LaunchSlidePresenter(private var view: ILaunchSlideView, override var repo
                         }
                 )
     }
+
+    override fun itemClicked(item: Area) {
+        Log.d("-->",item.toString())
+    }
+
 
     override fun onDestroy() {
     }

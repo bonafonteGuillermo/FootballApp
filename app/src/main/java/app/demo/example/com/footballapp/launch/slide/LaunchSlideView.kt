@@ -39,6 +39,6 @@ class LaunchSlideView(context: AppCompatActivity) : ILaunchSlideView {
     }
 
     private fun itemClicked(item: Area) {
-//        presenter?.itemClicked(item)
+        presenter?.itemClicked(item)
     }
 }
