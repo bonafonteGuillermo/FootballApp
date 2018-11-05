@@ -14,10 +14,9 @@ import app.demo.example.com.footballapp.model.Area
 interface ILaunchPresenter : BasePresenter {
     fun onCreate(areas: ArrayList<Area>)
     fun itemClicked(item: Area)
-    fun filterItemClicked(item: Area)
-    fun currentCenterItem(pos: Area)
 }
 
 interface ILaunchView : BaseView<ILaunchPresenter> {
     fun bindViewPager(areas: ArrayList<Area>)
+    fun bindTabLayout()
 }

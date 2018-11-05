@@ -19,21 +19,13 @@ class LaunchPresenter(private var view: ILaunchView, override var repository: IR
 
     override fun onCreate(areas: ArrayList<Area>) {
         this.areas = areas.toList()
-        view.bindTabLayoutData(this.areas)
         view.bindViewPager(areas)
+        view.bindTabLayout()
     }
 
     override fun onDestroy() {}
 
     override fun itemClicked(item: Area) {
         Log.d("--->", item.parentArea)
-    }
-
-    override fun filterItemClicked(item: Area) {
-        Log.d("--->", item.parentArea)
-    }
-
-    override fun currentCenterItem(area: Area) {
-        Log.d("--Current center->", area.parentArea)
     }
 }

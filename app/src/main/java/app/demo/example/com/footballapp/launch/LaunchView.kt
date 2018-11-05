@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import app.demo.example.com.footballapp.R
-import app.demo.example.com.footballapp.launch.adapter.AreaFilterAdapter
 import app.demo.example.com.footballapp.launch.adapter.FragmentViewPagerAdapter
 import app.demo.example.com.footballapp.launch.slide.LaunchSlideFragment
 import app.demo.example.com.footballapp.loading.LoadingFragment
@@ -26,7 +25,6 @@ class LaunchView(context: AppCompatActivity) : ILaunchView, LaunchSlideFragment.
 
     var view: View
 
-    private val filterAdapter = AreaFilterAdapter { area: Area, position: Int ->  filterItemClicked(area,position) }
     private var pagerAdapter : FragmentViewPagerAdapter? = null
     private val fm = context.supportFragmentManager
 
@@ -45,11 +43,17 @@ class LaunchView(context: AppCompatActivity) : ILaunchView, LaunchSlideFragment.
     override fun bindViewPager(areas: ArrayList<Area>) {
         pagerAdapter = FragmentViewPagerAdapter(areas,fm)
         view.pager.adapter = pagerAdapter
-        view.tablayout.setupWithViewPager(view.pager)
     }
 
-    private fun filterItemClicked(item: Area, position: Int) {
-        presenter?.filterItemClicked(item)
+    override fun bindTabLayout() {
+        view.tablayout.setupWithViewPager(view.pager)
+
+        // Iterate over all tabs and set the custom view
+        for (i in 0 until view.tablayout.tabCount) {
+            val tab = view.tablayout.getTabAt(i)
+            tab?.customView = LayoutInflater.from(context).inflate(R.layout.item_tab_layout, null)
+        }
+
     }
 
     override fun onFragmentInteraction(uri: Uri) {}
