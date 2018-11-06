@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_areas"
+        android:icon="@drawable/navigation_icon_area"
+        android:title="@string/navigation_areas" />
+
+    <item
+        android:id="@+id/navigation_competitions"
+        android:icon="@drawable/navigation_icon_competitions"
+        android:title="@string/navigation_competitions" />
+
+    <item
+        android:id="@+id/navigation_settings"
+        android:icon="@drawable/navigation_icon_settings"
+        android:title="@string/navigation_settings" />
+</menu>

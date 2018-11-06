@@ -30,21 +30,17 @@ class Repository(private val api: Api,
                     if (parentAreasLocallySaved.isEmpty()) {
                         var response = api.getAreas(getFootballDataApiToken())
                         response.subscribe(
-                                { areasResponse ->
-                                    saveAreasInLocalStorage(areasResponse.areas)
+                                {
+                                    saveAreasInLocalStorage(it.areas)
                                     publisher.onSuccess(getLocallySavedParentAreas())
                                 },
-                                { error ->
-                                    publisher.onError(error)
-                                }
+                                {   publisher.onError(it) }
                         )
                     } else {
                         publisher.onSuccess(parentAreasLocallySaved)
                     }
                 },
-                { error ->
-                    publisher.onError(error)
-                }
+                { publisher.onError(it) }
         )
         return publisher
     }

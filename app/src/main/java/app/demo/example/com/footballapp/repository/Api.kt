@@ -13,11 +13,9 @@ import retrofit2.http.Header
  */
 @Keep
 interface Api {
-
-
     @GET("/v2/areas")
     fun getAreas(@Header("X-Auth-Token") apiToken : String) : Single<AreasResponse>
 
-
-
+    @GET("/v2/competitions")
+    fun getCompetitions(@Header("X-Auth-Token") apiToken : String) : Single<AreasResponse>
 }
