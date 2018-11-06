@@ -11,7 +11,7 @@ import app.demo.example.com.footballapp.model.Area
  * Created by Guillermo Bonafonte Criado on 20-Aug-18.
  * 2018 © Cognizant Technology Solutions
  */
-class FragmentViewPagerAdapter(private var parentAreas: ArrayList<Area>, fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
+class FragmentViewPagerAdapter(private var parentAreas: List<Area>, fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
         return LaunchSlideFragment.newInstance(parentAreas[position])

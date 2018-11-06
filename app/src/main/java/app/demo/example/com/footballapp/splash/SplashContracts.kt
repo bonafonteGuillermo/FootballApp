@@ -15,6 +15,6 @@ interface ISplashPresenter : BasePresenter {
 }
 
 interface ISplashView : BaseView<ISplashPresenter> {
-    fun  navigateToLaunchActivity(areas:List<Area>)
+    fun  navigateToLaunchActivity()
 
 }

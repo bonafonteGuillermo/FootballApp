@@ -34,11 +34,10 @@ class SplashPresenter(private var view: ISplashView, override var repository: IR
                 .subscribe(
                         { areas ->
                             view.hideLoadingFragment()
-                            view.navigateToLaunchActivity(areas)
+                            view.navigateToLaunchActivity()
                         },
                         {
                             view.hideLoadingFragment()
-                            //TODO Show error dialog or whatever
                         }
                 )
     }

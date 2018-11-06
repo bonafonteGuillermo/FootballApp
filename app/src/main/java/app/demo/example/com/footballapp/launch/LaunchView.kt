@@ -41,12 +41,12 @@ class LaunchView(context: AppCompatActivity) : ILaunchView, LaunchSlideFragment.
         view = LayoutInflater.from(context).inflate(R.layout.activity_launch, parent, true)
     }
 
-    override fun bindViewPager(areas: ArrayList<Area>) {
+    override fun bindViewPager(areas: List<Area>) {
         pagerAdapter = FragmentViewPagerAdapter(areas,fm)
         view.pager.adapter = pagerAdapter
     }
 
-    override fun bindTabLayout(areas: ArrayList<Area>) {
+    override fun bindTabLayout(areas: List<Area>) {
         view.tablayout.setupWithViewPager(view.pager)
 
 
