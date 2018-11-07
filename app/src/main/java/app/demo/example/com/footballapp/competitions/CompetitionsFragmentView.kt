@@ -15,7 +15,7 @@ import app.demo.example.com.footballapp.loading.LoadingFragment
  *
  * Created by Guillermo Bonafonte Criado
  */
-class CompetitionsView(context: AppCompatActivity) : ICompetitionsView {
+class CompetitionsFragmentView(context: AppCompatActivity) : ICompetitionsView {
     var view: View
 
     override var context: Context = context

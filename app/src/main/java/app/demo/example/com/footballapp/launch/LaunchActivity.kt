@@ -9,6 +9,7 @@ import app.demo.example.com.footballapp.R
 import app.demo.example.com.footballapp.app.App
 import app.demo.example.com.footballapp.app.BaseActivity
 import app.demo.example.com.footballapp.areas.AreasFragment
+import app.demo.example.com.footballapp.competitions.CompetitionsFragment
 import app.demo.example.com.footballapp.launch.injection.DaggerLaunchComponent
 import app.demo.example.com.footballapp.launch.injection.LaunchContextModule
 import app.demo.example.com.footballapp.model.Area
@@ -34,8 +35,7 @@ class LaunchActivity : BaseActivity<ILaunchView, ILaunchPresenter>() {
         super.onCreate(savedInstanceState)
         setContentView(view.constructView())
         renderBottomNavigationBar()
-        bottomNavigationBar.selectedItemId = R.id.navigation_areas
-        bottomNavigationBar.setOnNavigationItemReselectedListener {}
+
         view.presenter = presenter
         presenter.onCreate()
     }
@@ -49,17 +49,18 @@ class LaunchActivity : BaseActivity<ILaunchView, ILaunchPresenter>() {
         bottomNavigationBar = findViewById(R.id.bottom_navigation_bar)
         bottomNavigationBar.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.navigation_areas -> addFragment(AreasFragment())
-//                R.id.navigation_competitions ->
+                R.id.navigation_areas -> addFragment(AreasFragment.newInstance())
+                R.id.navigation_competitions -> addFragment(CompetitionsFragment.newInstance())
             }
             true
         }
+        bottomNavigationBar.selectedItemId = R.id.navigation_areas
+        bottomNavigationBar.setOnNavigationItemReselectedListener {}
     }
 
     fun addFragment(fragment: Fragment) {
         supportFragmentManager
                 .beginTransaction()
-                .addToBackStack(fragment.javaClass.simpleName)
                 .replace(R.id.fragment_container, fragment)
                 .commitAllowingStateLoss()
     }

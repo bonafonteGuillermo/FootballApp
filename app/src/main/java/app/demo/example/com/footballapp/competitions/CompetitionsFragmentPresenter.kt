@@ -10,7 +10,7 @@ import io.reactivex.disposables.Disposable
  *
  * Created by Guillermo Bonafonte Criado
  */
-class CompetitionsPresenter(private var view: ICompetitionsView, override var repository: IRepository, override var schedulers: Schedulers) : ICompetitionsPresenter {
+class CompetitionsFragmentPresenter(private var view: ICompetitionsView, override var repository: IRepository, override var schedulers: Schedulers) : ICompetitionsPresenter {
 
     private lateinit var subscription: Disposable
 
@@ -19,6 +19,5 @@ class CompetitionsPresenter(private var view: ICompetitionsView, override var re
     }
 
     override fun onDestroy() {
-        subscription.dispose()
     }
 }

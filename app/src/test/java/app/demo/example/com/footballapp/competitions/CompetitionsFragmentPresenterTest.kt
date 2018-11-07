@@ -15,7 +15,7 @@ import java.util.concurrent.Executor
  *
  */
 
-class CompetitionsPresenterTest() {
+class CompetitionsFragmentPresenterTest() {
 
     @Before
     fun setUp() {
