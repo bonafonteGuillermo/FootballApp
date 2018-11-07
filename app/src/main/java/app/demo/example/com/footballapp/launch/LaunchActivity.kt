@@ -22,6 +22,8 @@ import javax.inject.Inject
  */
 class LaunchActivity : BaseActivity<ILaunchView, ILaunchPresenter>() {
 
+    private lateinit var bottomNavigationBar: BottomNavigationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         DaggerLaunchComponent.builder()
                 .appComponent(App.appComponent)
@@ -32,6 +34,8 @@ class LaunchActivity : BaseActivity<ILaunchView, ILaunchPresenter>() {
         super.onCreate(savedInstanceState)
         setContentView(view.constructView())
         renderBottomNavigationBar()
+        bottomNavigationBar.selectedItemId = R.id.navigation_areas
+        bottomNavigationBar.setOnNavigationItemReselectedListener {}
         view.presenter = presenter
         presenter.onCreate()
     }
@@ -42,9 +46,7 @@ class LaunchActivity : BaseActivity<ILaunchView, ILaunchPresenter>() {
     }
 
     private fun renderBottomNavigationBar() {
-        val bottomNavigationBar: BottomNavigationView = findViewById(R.id.bottom_navigation_bar)
-        //Avoid reselect on bottomNavigationBar
-        bottomNavigationBar.setOnNavigationItemReselectedListener {}
+        bottomNavigationBar = findViewById(R.id.bottom_navigation_bar)
         bottomNavigationBar.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_areas -> addFragment(AreasFragment())
