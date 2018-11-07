@@ -1,4 +1,4 @@
-package app.demo.example.com.footballapp.launch.slide.injection
+package app.demo.example.com.footballapp.areas.slide.injection
 
 import java.lang.annotation.Retention
 import java.lang.annotation.RetentionPolicy
@@ -12,4 +12,4 @@ import javax.inject.Scope
 
 @Scope
 @Retention(RetentionPolicy.CLASS)
-annotation class LaunchSlideScope
+annotation class AreasSlideScope

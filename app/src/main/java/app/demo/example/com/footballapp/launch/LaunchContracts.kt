@@ -12,10 +12,9 @@ import app.demo.example.com.footballapp.model.Area
  * Created by Guillermo Bonafonte Criado
  */
 interface ILaunchPresenter : BasePresenter {
-    fun itemClicked(item: Area)
+
 }
 
 interface ILaunchView : BaseView<ILaunchPresenter> {
-    fun bindViewPager(areas: List<Area>)
-    fun bindTabLayout(areas: List<Area>)
+
 }

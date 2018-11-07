@@ -24,7 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".competitions.CompetitionsActivity"></activity>
+        <activity android:name=".competitions.CompetitionsActivity" />
+        <activity android:name=".area.AreaFragment" />
+        <activity android:name=".areas.AreasFragment"></activity>
     </application>
 
 </manifest>

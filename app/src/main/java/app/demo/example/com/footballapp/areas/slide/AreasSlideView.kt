@@ -1,4 +1,4 @@
-package app.demo.example.com.footballapp.launch.slide
+package app.demo.example.com.footballapp.areas.slide
 
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import app.demo.example.com.footballapp.R
-import app.demo.example.com.footballapp.launch.adapter.ParentAreaAdapter
+import app.demo.example.com.footballapp.areas.adapter.ParentAreaAdapter
 import app.demo.example.com.footballapp.loading.LoadingFragment
 import app.demo.example.com.footballapp.model.Area
 import kotlinx.android.synthetic.main.fragment_launch_slide.view.*
@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_launch_slide.view.*
  * Created by Guillermo Bonafonte Criado on 21-Aug-18.
  * 2018 © Cognizant Technology Solutions
  */
-class LaunchSlideView(context: AppCompatActivity) : ILaunchSlideView {
+class AreasSlideView(context: AppCompatActivity) : ILaunchSlideView {
 
     var view: View
 

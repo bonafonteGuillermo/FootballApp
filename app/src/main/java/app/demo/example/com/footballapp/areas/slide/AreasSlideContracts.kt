@@ -1,4 +1,4 @@
-package app.demo.example.com.footballapp.launch.slide
+package app.demo.example.com.footballapp.areas.slide
 
 import app.demo.example.com.footballapp.app.BasePresenter
 import app.demo.example.com.footballapp.app.BaseView

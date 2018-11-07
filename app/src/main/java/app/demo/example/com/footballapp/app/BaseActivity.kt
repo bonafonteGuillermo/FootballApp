@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
 import app.demo.example.com.footballapp.R
+import app.demo.example.com.footballapp.R.id.*
 import app.demo.example.com.footballapp.competitions.CompetitionsActivity
 import app.demo.example.com.footballapp.launch.LaunchActivity
 import javax.inject.Inject
@@ -15,7 +16,7 @@ import javax.inject.Inject
 /**
  * Created by Guillermo Bonafonte Criado
  */
-abstract class BaseActivity<V : BaseView<P>, P : BasePresenter> : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+abstract class BaseActivity<V : BaseView<P>, P : BasePresenter> : AppCompatActivity() {
 
     @Inject
     lateinit var view: V
@@ -32,14 +33,5 @@ abstract class BaseActivity<V : BaseView<P>, P : BasePresenter> : AppCompatActiv
         view.presenter = presenter
         presenter.onCreate()
         setContentView(contentView)
-
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId){
-            R.id.navigation_areas -> view.startActivity(LaunchActivity::class.java)
-            R.id.navigation_competitions -> view.startActivity(CompetitionsActivity::class.java)
-        }
-        return true
     }
 }

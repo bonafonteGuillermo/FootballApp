@@ -1,4 +1,4 @@
-package app.demo.example.com.footballapp.launch.slide
+package app.demo.example.com.footballapp.areas.slide
 
 import android.util.Log
 import app.demo.example.com.footballapp.model.Area
@@ -11,7 +11,7 @@ import io.reactivex.Observable
  * Created by Guillermo Bonafonte Criado on 21-Aug-18.
  * 2018 © Cognizant Technology Solutions
  */
-class LaunchSlidePresenter(private var view: ILaunchSlideView, override var repository: IRepository, override var schedulers: Schedulers) : ILaunchSlidePresenter {
+class AreasSlidePresenter(private var view: ILaunchSlideView, override var repository: IRepository, override var schedulers: Schedulers) : ILaunchSlidePresenter {
 
     override fun onCreate() {}
 

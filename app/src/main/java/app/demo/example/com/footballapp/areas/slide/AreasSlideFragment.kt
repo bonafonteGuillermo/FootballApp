@@ -1,16 +1,15 @@
-package app.demo.example.com.footballapp.launch.slide
+package app.demo.example.com.footballapp.areas.slide
 
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import app.demo.example.com.footballapp.app.App
-import app.demo.example.com.footballapp.launch.slide.injection.DaggerLaunchSlideComponent
-import app.demo.example.com.footballapp.launch.slide.injection.LaunchSlideContextModule
+import app.demo.example.com.footballapp.areas.slide.injection.AreasSlideContextModule
+import app.demo.example.com.footballapp.areas.slide.injection.DaggerAreasSlideComponent
 import app.demo.example.com.footballapp.model.Area
 import javax.inject.Inject
 
@@ -43,9 +42,9 @@ class LaunchSlideFragment : Fragment() {
             parentArea = it.getParcelable(ARG_PARAM1)
         }
 
-        DaggerLaunchSlideComponent.builder()
+        DaggerAreasSlideComponent.builder()
                 .appComponent(App.appComponent)
-                .launchSlideContextModule(LaunchSlideContextModule(activity as AppCompatActivity))
+                .areasSlideContextModule(AreasSlideContextModule(activity as AppCompatActivity))
                 .build()
                 .inject(this)
 

@@ -26,6 +26,6 @@ class CompetitionsView(context: AppCompatActivity) : ICompetitionsView {
     init {
         val parent = FrameLayout(context)
         parent.layoutParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-        view = LayoutInflater.from(context).inflate(R.layout.activity_competitions, parent, true)
+        view = LayoutInflater.from(context).inflate(R.layout.fragment_competitions, parent, true)
     }
 }

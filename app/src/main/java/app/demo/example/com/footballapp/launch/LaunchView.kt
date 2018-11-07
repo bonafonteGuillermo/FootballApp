@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import app.demo.example.com.footballapp.R
-import app.demo.example.com.footballapp.launch.adapter.FragmentViewPagerAdapter
-import app.demo.example.com.footballapp.launch.slide.LaunchSlideFragment
+import app.demo.example.com.footballapp.areas.adapter.FragmentViewPagerAdapter
+import app.demo.example.com.footballapp.areas.slide.LaunchSlideFragment
 import app.demo.example.com.footballapp.loading.LoadingFragment
 import app.demo.example.com.footballapp.model.Area
 import kotlinx.android.synthetic.main.activity_launch.view.*
@@ -22,12 +22,10 @@ import kotlinx.android.synthetic.main.item_tab_layout.view.*
  *
  * Created by Guillermo Bonafonte Criado
  */
-class LaunchView(context: AppCompatActivity) : ILaunchView, LaunchSlideFragment.OnFragmentInteractionListener {
+class LaunchView(context: AppCompatActivity) : ILaunchView {
 
     var view: View
 
-    private var pagerAdapter : FragmentViewPagerAdapter? = null
-    private val fm = context.supportFragmentManager
 
     override var context: Context = context
     override var presenter: ILaunchPresenter? = null
@@ -40,25 +38,4 @@ class LaunchView(context: AppCompatActivity) : ILaunchView, LaunchSlideFragment.
         parent.layoutParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         view = LayoutInflater.from(context).inflate(R.layout.activity_launch, parent, true)
     }
-
-    override fun bindViewPager(areas: List<Area>) {
-        pagerAdapter = FragmentViewPagerAdapter(areas,fm)
-        view.pager.adapter = pagerAdapter
-    }
-
-    override fun bindTabLayout(areas: List<Area>) {
-        view.tablayout.setupWithViewPager(view.pager)
-
-
-        // Iterate over all tabs and set the custom view
-        for (i in 0 until view.tablayout.tabCount) {
-            val tab = view.tablayout.getTabAt(i)
-            val customTabLayoutView = LayoutInflater.from(context).inflate(R.layout.item_tab_layout, null)
-            tab?.customView = customTabLayoutView
-            tab?.customView?.tv_tab_layout?.text = areas[i].parentArea
-        }
-
-    }
-
-    override fun onFragmentInteraction(uri: Uri) {}
 }

@@ -1,4 +1,4 @@
-package app.demo.example.com.footballapp.launch.adapter
+package app.demo.example.com.footballapp.areas.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

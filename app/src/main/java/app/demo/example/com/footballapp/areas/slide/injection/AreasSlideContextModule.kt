@@ -1,7 +1,6 @@
-package app.demo.example.com.footballapp.launch.slide.injection
+package app.demo.example.com.footballapp.areas.slide.injection
 
 import android.support.v7.app.AppCompatActivity
-import app.demo.example.com.footballapp.launch.injection.LaunchScope
 import dagger.Module
 import dagger.Provides
 
@@ -12,11 +11,11 @@ import dagger.Provides
  */
 
 @Module
-class LaunchSlideContextModule(var context: AppCompatActivity) {
+class AreasSlideContextModule(var context: AppCompatActivity) {
 
     var launchSlideContext: AppCompatActivity = context
 
-    @LaunchSlideScope
+    @AreasSlideScope
     @Provides
     fun providesLaunchSlideContextModule(): AppCompatActivity {
         return launchSlideContext
